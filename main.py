@@ -107,22 +107,19 @@ async def create_item(item_id: int, item: Item, q: Optional[str] = None):
 
 # クエリパラメータと文字列の検証
 # バリデーション・正規表現
+# @app.get("/items/")
+# async def read_items(
+#     q: Optional[str] = Query(None, min_length=3, max_length=50, regex="^fixedquery$")  # 必須にするには「None」→「...」
+# ):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results.update({"q":q})
+#     return results
+
+# URL内に複数回出現するクエリパラメータqを宣言
+# URL：http://localhost:8000/items/?q=foo&q=bar
 @app.get("/items/")
-async def read_items(
-    q: Optional[str] = Query(None, min_length=3, max_length=50, regex="^fixedquery$")  # 必須にするには「None」→「...」
-):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q":q})
-    return results
+async def read_items(q: Optional[List[str]] = Query(None)):
+    query_items = {"q": q}
+    return query_items
 
-
-# class Data(BaseModel):
-#     """request data用の型ヒントがされたクラス"""
-#     string: str
-#     default_none: Optional[int] = None
-#     lists: List[int]
-
-# @app.post('/post')
-# async def declare_request_body(data: Data):
-#     return {"text": f"hello, {data.string}, {data.default_none}, {data.lists}"}
