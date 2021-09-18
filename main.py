@@ -118,8 +118,8 @@ async def create_item(item_id: int, item: Item, q: Optional[str] = None):
 
 # URL内に複数回出現するクエリパラメータqを宣言
 # URL：http://localhost:8000/items/?q=foo&q=bar
-@app.get("/items/")
-async def read_items(q: Optional[List[str]] = Query(None)):
-    query_items = {"q": q}
-    return query_items
+# @app.get("/items/")
+# async def read_items(q: Optional[List[str]] = Query(None)):
+#     query_items = {"q": q}
+#     return query_items
 
