@@ -123,3 +123,23 @@ async def create_item(item_id: int, item: Item, q: Optional[str] = None):
 #     query_items = {"q": q}
 #     return query_items
 
+# デフォルト値を持つ、クエリパラメータのリスト / 複数の値
+# 値が指定されていない場合はデフォルトのlistを定義することもできる
+# URL：http://localhost:8000/items/
+@app.get("/items/")
+async def read_items(q: List[str] = Query(["foo", "bar"])):
+    query_items = {"q": q}
+    return query_items
+
+# メモ
+# メタデータ（データに関するデータ）を付け加えることもできる
+# alias parametor：item-queryはPythonで有効な変数ではないが、aliasを宣言することでitem-queryをパラメータとして認識してくれる
+# 非推奨のパラメータには`deprecated=True`と明記しておくことができる
+
+# Path Parameters and Numeric Validations
+# The same way you can declare more validations and metadata for query parameters with Query,
+# you can declare the same type of validations and metadata for path parameters with Path.
+# "「パス」でパスパラメータのバリデーションやメタデータを増やすことができる"
+# Order the parameters as you need
+# Number validations
+
