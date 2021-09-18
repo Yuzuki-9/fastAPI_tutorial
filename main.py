@@ -133,7 +133,7 @@ async def read_items(q: List[str] = Query(["foo", "bar"])):
 
 # メモ
 # メタデータ（データに関するデータ）を付け加えることもできる
-# alias parametor：item-queryはPythonで有効な変数ではないが、aliasを宣言することでitem-queryをパラメータとして認識してくれる
+# alias parameter：item-queryはPythonで有効な変数ではないが、aliasを宣言することでitem-queryをパラメータとして認識してくれる
 # 非推奨のパラメータには`deprecated=True`と明記しておくことができる
 
 # Path Parameters and Numeric Validations
